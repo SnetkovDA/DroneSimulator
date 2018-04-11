@@ -7,8 +7,11 @@ public class DronePoint : MonoBehaviour
     public GameObject drone;
     GameObject _d;
 
+    Vector2 genTime; 
+
     void Start()
     {
+        genTime = new Vector2(PlayerPrefs.GetFloat("MinWait", 0.7f), PlayerPrefs.GetFloat("MaxWait", 10.7f));
         StartCoroutine(CreateDrone());
     }
 
@@ -22,7 +25,7 @@ public class DronePoint : MonoBehaviour
                 _d = Instantiate(drone, transform.position, transform.rotation);
                 _d.GetComponent<Drone_V1>().target = CentralProcessingData.GetRandomTarget();
             }
-            yield return new WaitForSeconds(UnityEngine.Random.Range(0.2f, 7.0f));
+            yield return new WaitForSeconds(UnityEngine.Random.Range(genTime.x, genTime.y));
         }
     }
 }

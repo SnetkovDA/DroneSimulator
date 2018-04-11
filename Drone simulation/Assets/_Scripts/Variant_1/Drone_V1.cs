@@ -15,6 +15,7 @@ public class Drone_V1 : MonoBehaviour
 
     void Start()
     {
+        speed = PlayerPrefs.GetFloat("DroneSpeed", speed);
         ID = CentralProcessingData.GenerateID();
         CentralProcessingData.RequestPath(transform.position, target, ID, OnPathFound);
         lineRenderer.startColor = new Color(UnityEngine.Random.Range(0.0f, 1), 0, UnityEngine.Random.Range(0.0f, 1));

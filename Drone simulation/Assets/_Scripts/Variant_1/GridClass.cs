@@ -23,6 +23,7 @@ public class GridClass : MonoBehaviour
 
     void Awake()
     {
+        nodeRadius = PlayerPrefs.GetFloat("NodeRadius", nodeRadius);
         nodeDiameter = 2 * nodeRadius;
         gridSizeX = Mathf.RoundToInt(gridWorldSize.x / nodeDiameter);
         gridSizeY = Mathf.RoundToInt(gridWorldSize.y / nodeDiameter);
@@ -90,7 +91,7 @@ public class GridClass : MonoBehaviour
             foreach (Node item in grid)
             {
                 Gizmos.color = item.walkable ? Color.white : Color.red;
-                Gizmos.DrawCube(item.worldPosition, Vector3.one * (nodeDiameter - 0.1f));
+                Gizmos.DrawCube(item.worldPosition, Vector3.one * nodeDiameter/2.0f);
             }
         }
     }
